@@ -15,6 +15,7 @@
 				nav_item_attr_selected = ""
 				nav_item_css_class = ""
 				nav_item_layout = nav_item.getLayout()
+				nav_item_has_children_css_class = ""
 			/>
 
 			<#if nav_item.isSelected()>
@@ -25,9 +26,15 @@
 				/>
 			</#if>
 
-	
-
-			<li ${nav_item_attr_selected} class="${nav_item_css_class}" id="layout_${nav_item.getLayoutId()}" role="presentation">
+			<#if nav_item.hasChildren()>
+				<#assign nav_item_has_children_css_class = "has_children" />
+				<#list nav_item.getChildren() as nav_child>
+					<#if nav_child.isSelected()>
+						<#assign nav_item_css_class = "" />
+					</#if>
+				</#list>
+			</#if>
+			<li ${nav_item_attr_selected} class="${nav_item_css_class} ${nav_item_has_children_css_class}" id="layout_${nav_item.getLayoutId()}" role="presentation">
 				<a aria-labelledby="layout_${nav_item.getLayoutId()}" ${nav_item_attr_has_popup} href="${nav_item.getURL()}" ${nav_item.getTarget()} role="menuitem">
 					<span><@liferay_theme["layout-icon"] layout=nav_item_layout /> ${nav_item.getName()}</span>
 					<#if nav_item.hasChildren()>
@@ -43,7 +50,7 @@
 								nav_child_css_class = ""
 							/>
 
-							<#if nav_item.isSelected()>
+							<#if nav_child.isSelected()>
 								<#assign
 									nav_child_attr_selected = "aria-selected='true'"
 									nav_child_css_class = "selected"

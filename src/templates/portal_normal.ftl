@@ -24,10 +24,18 @@
 
 <div class="container-fluid" id="wrapper">
 	<div class="container">
-		<div class="row spacer-hor-20">
-			<div id="heading" class="layout-row space-between align-middle">
+		<div class="row">
+			<div id="heading" class="layout-row spacer-xs-ver-20 spacer-ver-30 space-between align-middle align-center-xs">
+				<div id="mobile-nav-button">
+					<div id="mobile-nav-icon">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
 				<div>
-					<h1 class="site-title">
+					<h1 class="site-title spacer-0">
 						<a class="${logo_css_class}" href="${site_default_url}" title="<@liferay.language_format arguments="${site_name}" key="go-to-x" />">
 							<img alt="${logo_description}" height="${site_logo_height}" src="${site_logo}" width="${site_logo_width}" />
 						</a>
@@ -45,6 +53,9 @@
 					<#if has_navigation && is_setup_complete>
 						<#include "${full_templates_path}/navigation.ftl" />
 					</#if>
+					<div class="close-navigation">
+						<i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -133,6 +144,7 @@
 		
 	</footer>
 </div>
+<div id="overlay"></div>
 
 <@liferay_util["include"] page=body_bottom_include />
 

@@ -51,7 +51,7 @@ $positions: (top, left, right, bottom);
   width: calc(100% / 3);
 }
 
-@for $i from 1 through 20 {
+@for $i from 0 through 20 {
 
   .flex-#{$i * 5} {
     flex: 0 0 #{$i * 5%};
@@ -61,21 +61,27 @@ $positions: (top, left, right, bottom);
   .spacer-#{$i * 5} {
     margin: #{$i * 5px};
   }
+  
   .spacer-ver-#{$i * 5} {
-    margin: 0 #{$i * 5px};
+    margin-top: #{$i * 5px};
+    margin-bottom: #{$i * 5px};
   }
   .spacer-hor-#{$i * 5} {
-    margin: #{$i * 5px} 0;
+    margin-left: #{$i * 5px};
+    margin-right: #{$i * 5px};
   }
   .pad-#{$i * 5} {
     padding: #{$i * 5px};
   }
   .pad-ver-#{$i * 5} {
-    padding: 0 #{$i * 5px};
+    padding-top: #{$i * 5px};
+    padding-bottom: #{$i * 5px};
   }
   .pad-hor-#{$i * 5} {
-    padding: #{$i * 5px} 0;
+    padding-left: #{$i * 5px};
+    padding-right: #{$i * 5px};
   }
+
   @each $position in $positions {
     .spacer-#{$position}-#{$i * 5} {
       margin-#{$position}: #{$i * 5px};
@@ -138,7 +144,7 @@ $positions: (top, left, right, bottom);
 }
 
 .space-between {
-  margin: 0;
+  // margin: 0;
   justify-content: space-between;
 }
 
@@ -221,7 +227,8 @@ $positions: (top, left, right, bottom);
 .text-right {
   text-align: right;
 }
-// @mixin media-query($min, $max: null) {
+
+
 @include media-query(null, $screen-sm) {
 
   .align-center-xs {
@@ -255,8 +262,44 @@ $positions: (top, left, right, bottom);
       width: #{$i * 5%};
     }
   }
+
+  @for $i from 0 through 20 {
+
+    .flex-xs-#{$i * 5} {
+      flex: 0 0 #{$i * 5%};
+      width: #{$i * 5%};
+    }
+
+    .spacer-xs-#{$i * 5} {
+      margin: #{$i * 5px};
+    }
+    .spacer-xs-ver-#{$i * 5} {
+      margin-top: #{$i * 5px};
+      margin-bottom: #{$i * 5px};
+    }
+    .spacer-xs-hor-#{$i * 5} {
+      margin-left: #{$i * 5px};
+      margin-right: #{$i * 5px};
+    }
+    .pad-xs-#{$i * 5} {
+      padding: #{$i * 5px};
+    }
+    .pad-ver-xs-#{$i * 5} {
+      padding-top: #{$i * 5px};
+      padding-bottom: #{$i * 5px};
+    }
+    .pad-hor-xs-#{$i * 5} {
+      padding-left: #{$i * 5px};
+      padding-right: #{$i * 5px};
+    }
+    @each $position in $positions {
+      .spacer-xs-#{$position}-#{$i * 5} {
+        margin-#{$position}: #{$i * 5px};
+      }
+      .pad-xs-#{$position}-#{$i * 5} {
+        padding-#{$position}: #{$i * 5px};
+      }
+    }
+
+  }
 }
-
-
-
-  

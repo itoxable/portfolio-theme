@@ -1,0 +1,10 @@
+{
+  "LiferayTheme": {
+    "appServerPath": "C:\\Users\\ruicu\\projects\\liferay-ce-portal-7.0-ga5\\tomcat-8.0.32",
+    "deployPath": "C:\\Users\\ruicu\\projects\\liferay-ce-portal-7.0-ga5\\deploy",
+    "url": "http://localhost:8080",
+    "appServerPathPlugin": "C:\\Users\\ruicu\\projects\\liferay-ce-portal-7.0-ga5\\tomcat-8.0.32\\webapps\\jportfolio-theme",
+    "deployed": true,
+    "pluginName": "portfolio-theme"
+  }
+}
