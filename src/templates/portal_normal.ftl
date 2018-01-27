@@ -25,7 +25,7 @@
 <div class="container-fluid" id="wrapper">
 	<div class="container">
 		<div class="row">
-			<div id="heading" class="layout-row spacer-xs-ver-20 spacer-ver-30 space-between align-middle align-center-xs">
+			<div id="heading" class="layout-row spacer-xs-ver-15 spacer-ver-30 space-between align-middle align-center-xs">
 				<div id="mobile-nav-button">
 					<div id="mobile-nav-icon">
 						<span></span>
@@ -39,9 +39,7 @@
 						<a class="${logo_css_class}" href="${site_default_url}" title="<@liferay.language_format arguments="${site_name}" key="go-to-x" />">
 							<img alt="${logo_description}" height="${site_logo_height}" src="${site_logo}" width="${site_logo_width}" />
 						</a>
-
 						<#if show_site_name>
-
 							<a href="${site_default_url}" class="site-name" title="<@liferay.language_format arguments="${site_name}" key="go-to-x" />">
 								${site_name}
 							</a>
@@ -50,16 +48,25 @@
 				</div>
 
 				<div class="navigation">
+					<#if show_site_name>
+						<h2  class="site-name">
+							${site_name}
+						</h2>
+					</#if>
 					<#if has_navigation && is_setup_complete>
 						<#include "${full_templates_path}/navigation.ftl" />
 					</#if>
 					<div class="close-navigation">
 						<i class="fa fa-long-arrow-left" aria-hidden="true"></i>
 					</div>
+					<div class="menu-social spacer-top-20">
+						<@social/> 
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<section id="content">
 		<h1 class="hide-accessible">${the_title}</h1>
 
@@ -77,7 +84,6 @@
 	</section>
 
 	<footer id="footer" role="contentinfo">
-
 		<div class="">
 			<p class="text-center">
 				<#if copyright?has_content>
@@ -88,62 +94,11 @@
 					<a href="http://${donebyUrl}" target="_blank">Created by ${doneby}</a>
 				</#if>
 			</p>
-
-			<div class="social nav-social">
-				<ul>
-					<#if facebook?has_content>
-					<li>
-						<a href="http://www.facebook.com/${facebook}" target="_blank">
-							<i class="fa fa-facebook" aria-hidden="true"></i>
-						</a>
-					</li>
-					</#if>
-					<#if instagram?has_content>
-					<li>
-						<a href="https://www.instagram.com/${instagram}/" target="_blank">
-							<i class="fa fa-instagram" aria-hidden="true"></i>
-						</a>
-					</li>
-					</#if>
-					<#if pinterest?has_content>
-					<li>
-						<a href="http://www.pinterest.com/${pinterest}" target="_blank">
-							<i class="fa fa-pinterest" aria-hidden="true"></i>
-						</a>
-					</li>
-					</#if>
-					<#if youtube?has_content>
-					<li>
-						<a href="http://www.youtube.com/c/${youtube}" target="_blank">
-							<i class="fa fa-youtube" aria-hidden="true"></i>
-						</a>
-					</li>
-					</#if>
-					<#if twitter?has_content>
-					<li>
-						<a href="http://www.twitter.com/${twitter}" target="_blank">
-							<i class="fa fa-twitter" aria-hidden="true"></i>
-						</a>
-					</li>
-					</#if>
-					<#if email?has_content>
-					<li>
-						<a href="mailto:${email}">
-							<i class="fa fa-envelope-o" aria-hidden="true"></i>
-						</a>
-					</li>
-					</#if>
-
-
-					
-				</ul>
-			</div>
-		
+			<@social/> 
 		</div>
-
-		
 	</footer>
 </div>
+
 <div id="overlay"></div>
 
 <@liferay_util["include"] page=body_bottom_include />
@@ -153,6 +108,8 @@
 <!-- inject:js -->
 
 	<script type="text/javascript" src="${javascript_folder}/slick.js"></script>
+	<script type="text/javascript" src="${javascript_folder}/lightbox.js"></script>
+
 	<script type="text/javascript">
 		function closeNavigation() {
 			$('body').toggleClass("menu-on");
@@ -165,9 +122,7 @@
 		});
 		$('.close-navigation').click(function(){
 			closeNavigation();
-		});
-
-		
+		});		
 	</script>
 
 <!-- endinject -->
