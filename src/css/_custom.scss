@@ -5,6 +5,7 @@
 
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
 @import "lightbox.css";
+@import "cookieconsent.min.css";
 @import "slick/slick";
 @import "slick/slick-theme";
 @import "flex";
@@ -43,9 +44,18 @@ body {
     top: 0;
     left: 0;
 }
+.text-bold {
+    font-weight: 500;
+}
 a, a:hover, a:focus, a:visited {
     color: inherit;
     transition: background 0.2s ease, color 0.2s ease;
+}
+a.link {
+    font-weight: 500;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 .site-title {
     margin: 0;
@@ -156,60 +166,46 @@ a, a:hover, a:focus, a:visited {
 }
 
 .page-title {
-    padding-bottom: 40px;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 0;
-    font-weight: normal;
-    font-size: 3rem;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    font-size: 2rem;
+    display: inline-block;
+    border-bottom: 1px solid $separator-border-color;
 }
 
 .gallery{
     margin: 0 -20px;
     .item-wrapper{
         position: relative;
+        overflow: hidden;
         .item{
             margin: 20px;
-            display: block;
             position: relative;
-            transition: all 200ms;    
-            .item-image{
-                background-size: contain;
-                background-repeat: no-repeat;
-                background-position: center;
-                text-align: center;
-                transition: all 400ms;
+            transition: all 200ms; 
+            .item-link {
+                display: block;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
                 img {
                     width: 100%;
-                    user-select: none;
                 }
             }
-            .item-zoom {
+            .item-status {
                 position: absolute;
-                top: 50%;
-                left: 10%;
-                z-index: 9;
-            }
-            .item-title {
-                position: absolute;
-                left: 50%;
-                top: 0;
-                transform: translate(-50%);
+                bottom: 5px;
+                right: 5px;
+                background-color: rgba(0,0,0,0.5);
+                padding: 5px;
+                font-weight: 500;
                 color: #FFF;
-                font-size: 1px;
-                z-index: -1;
-                transition: all 400ms;
-                
-            }
-            &:hover {
-                .item-image{
-                    transform: scale(1.1);
-                    // filter: brightness(0.7);
+                span {
+                    margin: 0 10px;
                 }
-                .item-title {
-                    z-index: 1;
-                    top: 50%;
-                    color: #FFF;
-                    font-size: 20px;
+                .sold {
+
+                }
+                .gallery {
                 }
             }
         }
@@ -296,37 +292,25 @@ a, a:hover, a:focus, a:visited {
             transition: all 200ms;
             position: relative;
             display: block;
+            overflow: hidden;
             .link-image {
                 display: block;
                 img {
                     width: 100%;
                 }
             }
-              
-            .link-txt {
-                width: 100%;
-                position: absolute;
-                color: #FFF;
-                left: 50%;
-                top: 20px;
-                transform: translateX(-50%);
-                .link-name {
-                    display: block;
-                    font-size: 30px;
-                }
-            }
         }    
         
         .link-name {
             display: inline-block;
-            font-size: 2rem;
-            font-weight: 500;
             color: inherit;
-            margin-top: 10px;
-            border-bottom: 1px solid #000;
+        }
+        .link-description {
+
         }
     }
 }
+
 #mobile-nav-button, .close-navigation {
     display: none;    
 }
@@ -357,6 +341,26 @@ a, a:hover, a:focus, a:visited {
      }
 }
 
+.contact-page-header {
+    h1{
+        text-align: center;
+        border-bottom: 1px solid $separator-border-color;
+        padding-bottom: 40px;
+        margin: 0;
+        margin-bottom: 30px;
+    }
+    h4, h3{
+        font-weight: normal;
+        margin-bottom: 30px;
+    }
+}
+.container-fluid-1280.ddl-form-builder-app {
+    padding-left: 0;
+    padding-right: 0;
+}
+.ddl-form-basic-info, .lfr-ddm-form-page-title{
+    display: none !important;
+}
 @media screen and (min-width: $screen-sm-min) {
     
     .navbar-nav{
@@ -395,6 +399,80 @@ a, a:hover, a:focus, a:visited {
             }
         }
     }
+
+    .block-links {
+        .link-wrapper {
+            .link {
+                .link-image {
+                    img {
+                    }
+                }
+                
+            }    
+            
+            .link-name {
+                font-size: 2rem;
+                font-weight: 500;
+                margin-top: 10px;
+                text-decoration: none !important;
+                border-bottom: 1px solid #000;
+            }
+            .link-description {
+    
+            }
+        }
+    }
+
+    .gallery{
+        .item-wrapper{            
+            .item{
+                .item-zoom {
+                    position: absolute;
+                    top: 50%;
+                    left: -10%;
+                    z-index: 9;
+                    color: #FFF;
+                    margin-top: 25px;
+                    font-weight: normal;
+                    transition: left 200ms;
+                }
+                .item-title {
+                    position: absolute;
+                    left: 150%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    color: #FFF;
+                    z-index: 2;
+                    margin: 0;
+                    border-bottom: 1px solid #fff;
+                    width: 90%;
+                    text-align: center;
+                    font-weight: normal;
+                    padding-bottom: 5px;
+                    transition: left 200ms;
+                }
+                .item-link {
+                    img {
+                        transition: all 200ms;
+                    }
+                }
+                &:hover {
+                    .item-zoom {
+                        left: 10%;
+                     }
+                    .item-title { 
+                        left: 50%;
+                    }
+                    .item-link {
+                        img {
+                            transform: scale(1.1);
+                            filter: brightness(0.7);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @include media-query(null, $screen-sm) {
@@ -419,6 +497,32 @@ a, a:hover, a:focus, a:visited {
         font-size: 26px;
     }
 
+    .page-title {
+        margin-bottom: 0;
+        margin-top: 15px;
+    }
+    .gallery{
+        .item-wrapper{            
+            .item{
+                .item-zoom {
+                    display: none;
+                }
+                .item-title {
+                    display: inline-block;
+                    margin-top: 5px;
+                    font-weight: normal;
+                    font-size: 1.8rem;
+                    margin-right: 30px;
+                    margin-bottom: 0;
+                }
+                &:hover {
+                    .item-zoom { }
+                    .item-title { }
+                }
+            }
+        }
+    }
+
     .menu-social {
         display: block;
         .nav-social {
@@ -430,23 +534,19 @@ a, a:hover, a:focus, a:visited {
         margin: 0 -5px;
         .link-wrapper {
             margin: 0 5px;
+            .link-name {
+                margin-top: 0;
+                font-size: 1.8rem;
+                border-bottom: 0;
+            }
             .link {   
+                height: auto;
                 .shadow-overlay{
                     display: block;
                     z-index: 2;
                     position: absolute;
-                    background-color: rgba(0,0,0,0.3);
+                    background-color: rgba(255,255,255,0.1);
                 }               
-                .link-txt {
-                    left: 50%;
-                    top: 50%;
-                    transform: translate(-50%, -50%);
-                    z-index: 3;
-                    .link-name {
-                        display: block;
-                        font-size: 20px;
-                    }
-                }
             }
         }
     }

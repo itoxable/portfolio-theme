@@ -35,19 +35,17 @@
     					<div class="link-image"  >
     						<img src="${image}" alt="${imageAlt}">
     					</div>
-    					
-    					<div class="link-txt" >
-        					<h3 class="link-name">
-        						${entry.getTitle(locale)}
-        					</h3>
-        					<p class="link-description" >
-        						${imageDescription}
-        					</p>
-    					</div>
-    					
+    					   					
                 
             		</a>
-            		            	
+                    <a href="${pageLayout.getFriendlyURL()}" class="link-name">
+						${entry.getTitle(locale)}
+					</a>
+                    <#if imageDescription?has_content>  
+                        <p class="link-description" >
+                            ${imageDescription}
+                        </p>
+            		</#if>           	
 				</div>
     		</#if>
     	</#list>
