@@ -68,6 +68,11 @@ a.link {
         display: none;
     }
 }
+
+textarea.form-control {
+    min-height: 150px;
+}
+
 .navbar-nav{
     li{
         margin: 0 1px;
@@ -175,6 +180,10 @@ a.link {
 
 .gallery{
     margin: 0 -20px;
+    &.masonry {
+        height: 100vw;
+        overflow: hidden;
+    }
     .item-wrapper{
         position: relative;
         overflow: hidden;
@@ -195,17 +204,19 @@ a.link {
                 position: absolute;
                 bottom: 5px;
                 right: 5px;
-                background-color: rgba(0,0,0,0.5);
-                padding: 5px;
                 font-weight: 500;
                 color: #FFF;
                 span {
-                    margin: 0 10px;
+                    background-color: rgba(0,0,0,0.6);
+                    padding: 5px;
+                    margin-left: 10px;
+                    display: block;
+                    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.5);
                 }
                 .sold {
 
                 }
-                .gallery {
+                .in-gallery {
                 }
             }
         }

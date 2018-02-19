@@ -111,6 +111,8 @@
 	<script type="text/javascript" src="${javascript_folder}/lightbox.js"></script>
 	<script type="text/javascript" src="${javascript_folder}/cookieconsent.js"></script>
 
+	
+
 	<script type="text/javascript">
 		function closeNavigation() {
 			$('body').toggleClass("menu-on");
