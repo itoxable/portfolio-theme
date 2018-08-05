@@ -8,8 +8,7 @@
 	<title>${the_title} - ${company_name}</title>
 
 	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
-		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Quicksand:400,500,700" rel="stylesheet">
-
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Quicksand:400,500,700" rel="stylesheet">
 
 	<@liferay_util["include"] page=top_head_include />
 </head>
@@ -25,48 +24,30 @@
 <div class="container-fluid" id="wrapper">
 	<div class="container">
 		<div class="row">
-			<div id="heading" class="layout-row spacer-xs-ver-15 spacer-ver-30 space-between align-middle align-center-xs">
-				<div id="mobile-nav-button">
-					<div id="mobile-nav-icon">
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-					</div>
-				</div>
-				<div>
-					<h1 class="site-title spacer-0">
-						<a class="${logo_css_class}" href="${site_default_url}" title="<@liferay.language_format arguments="${site_name}" key="go-to-x" />">
-							<img alt="${logo_description}" height="${site_logo_height}" src="${site_logo}" width="${site_logo_width}" />
-						</a>
-						<#if show_site_name>
-							<a href="${site_default_url}" class="site-name" title="<@liferay.language_format arguments="${site_name}" key="go-to-x" />">
-								${site_name}
+			<div class="col-12">
+				<header id="banner" role="banner" class="d-flex justify-content-between my-4">
+					<div id="heading">
+						<h1 class="site-title">
+							<a class="${logo_css_class}" href="${site_default_url}" title="<@liferay.language_format arguments="${site_name}" key="go-to-x" />">
+								<#if show_logo>
+									<img alt="${logo_description}" height="${site_logo_height}" src="${site_logo}" width="${site_logo_width}" />
+								</#if>
+								<#if show_site_name>
+									<span class="site-name" title="<@liferay.language_format arguments="${site_name}" key="go-to-x" />">
+										${site_name}
+									</span>
+								</#if>
 							</a>
-						</#if>
-					</h1>
-				</div>
+						</h1>
+					</div>
 
-				<div class="navigation">
-					<#if show_site_name>
-						<h2  class="site-name">
-							${site_name}
-						</h2>
-					</#if>
 					<#if has_navigation && is_setup_complete>
 						<#include "${full_templates_path}/navigation.ftl" />
 					</#if>
-					<div class="close-navigation">
-						<i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-					</div>
-					<div class="menu-social spacer-top-20">
-						<@social/> 
-					</div>
-				</div>
+				</header>
 			</div>
 		</div>
 	</div>
-
 	<section id="content">
 		<h1 class="hide-accessible">${the_title}</h1>
 
@@ -89,7 +70,6 @@
 				<#if copyright?has_content>
 					© 2018 ${copyright}
 				</#if>
-
 				<#if doneby?has_content>
 					<a href="http://${donebyUrl}" target="_blank">Created by ${doneby}</a>
 				</#if>
@@ -97,21 +77,20 @@
 			<@social/> 
 		</div>
 	</footer>
-</div>
 
-<div id="overlay"></div>
+</div>
 
 <@liferay_util["include"] page=body_bottom_include />
 
 <@liferay_util["include"] page=bottom_include />
 
 <!-- inject:js -->
+<!-- endinject -->
+
 
 	<script type="text/javascript" src="${javascript_folder}/slick.js"></script>
 	<script type="text/javascript" src="${javascript_folder}/lightbox.js"></script>
 	<script type="text/javascript" src="${javascript_folder}/cookieconsent.js"></script>
-
-	
 
 	<script type="text/javascript">
 		function closeNavigation() {
@@ -126,26 +105,21 @@
 		$('.close-navigation').click(function(){
 			closeNavigation();
 		});		
+
+		window.addEventListener("load", function(){
+		window.cookieconsent.initialise({
+		"palette": {
+			"popup": {
+			"background": "#000"
+			},
+			"button": {
+			"background": "#f1d600"
+			}
+		},
+		"position": "bottom-right"
+		})});
 	</script>
 
-<!-- endinject -->
-
-<#--  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />  -->
-
-<script>
-	window.addEventListener("load", function(){
-	window.cookieconsent.initialise({
-	"palette": {
-		"popup": {
-		"background": "#000"
-		},
-		"button": {
-		"background": "#f1d600"
-		}
-	},
-	"position": "bottom-right"
-	})});
-</script>
 
 </body>
 
