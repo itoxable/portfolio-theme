@@ -10,13 +10,11 @@
             <#assign doc = saxReaderUtil.read(article.getContentByLocale(locale)) />
 
 			<#assign imageNode = doc.selectSingleNode("/root/dynamic-element[@name='image']/dynamic-content") />
-			<#assign image = imageNode.getText() />
-			<#assign imageAlt = imageNode.valueOf("@alt") />
+			<#assign image = jsonFactoryUtil.createJSONObject(imageNode.getText()) />
+			<#assign groupId = image.getLong("groupId") />
+			<#assign uuid = image.getString("uuid") />
 
 			<#assign imageDescription = article.getDescription(locale) />
-
-
-
 
     		<#assign link = doc.selectSingleNode("/root/dynamic-element[@name='link']/dynamic-content").getText() />
             <#assign linkDetails = link?split("@") />
@@ -33,7 +31,7 @@
         			    </div>
     
     					<div class="link-image"  >
-    						<img src="${image}" alt="${imageAlt}">
+    						<img src="/documents/${groupId}/${uuid}" >
     					</div>
     					   					
                 

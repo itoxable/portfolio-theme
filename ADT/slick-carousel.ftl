@@ -10,12 +10,13 @@
             <#assign doc = saxReaderUtil.read(article.getContentByLocale(locale)) />
 			<#assign imageNode = doc.selectSingleNode("/root/dynamic-element[@name='image']/dynamic-content") />
 			<#assign articleDescription = article.getDescription(locale) />
-			<#assign image = imageNode.getText() />
-			<#assign imageAlt = imageNode.valueOf("@alt") />
+			<#assign image = jsonFactoryUtil.createJSONObject(imageNode.getText()) />
+			<#assign groupId = image.getLong("groupId") />
+			<#assign uuid = image.getString("uuid") />
 			<#assign imageDescription = doc.selectSingleNode("/root/dynamic-element[@name='description']/dynamic-content").getText()  />
 
     		
-            <div class="slide" style="background-image: url('${image}');">
+            <div class="slide" style="background-image: url('/documents/${groupId}/${uuid}');">
     		
     		    <div class="lfr-meta-actions asset-actions" style="float: none">
 			         <@getEditIcon/> 

@@ -1,6 +1,12 @@
 <div class="gallery layout-row flex-wrap">
     <#if entries?has_content>   
     <#assign layoutLocalService = serviceLocator.findService('com.liferay.portal.kernel.service.LayoutLocalService') />
+    <#assign jsonFactoryUtil = serviceLocator.findService('com.liferay.portal.kernel.json.JSONFactoryUtil') />
+
+com.liferay.portal.kernel.json
+        JSONObject jsonObject =  JSONFactoryUtil.createJSONObject();
+
+
     	<#list entries as entry>
 
             <#assign assetRenderer = entry.getAssetRenderer() />
@@ -12,10 +18,14 @@
 
 			<#assign assetViewURL = assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, entry) />
 			<#assign viewURL = assetRenderer.getURLViewInContext(renderRequest, renderResponse, assetViewURL) />
-
 			<#assign articleDescription = article.getDescription(locale) />
 			<#assign imageNode = doc.selectSingleNode("/root/dynamic-element[@name='image']/dynamic-content") />
-			<#assign image = imageNode.getText() />
+
+			<#assign image = jsonFactoryUtil.createJSONObject(imageNode.getText()) />
+			<#assign groupId = image.getLong("groupId") />
+			<#assign uuid = image.getLong("uuid") />
+
+
 			<#assign imageAlt = imageNode.valueOf("@alt") />
 			<#assign imageDescription = doc.selectSingleNode("/root/dynamic-element[@name='description']/dynamic-content").getText()  />
 
@@ -24,13 +34,13 @@
     				<@getEditIcon/> 
 
     				<div class="item-image">
-    				    <img src="${image}">
+    				    <img src="/documents/${groupId}/${uuid}">
     				</div>
     				
     				<div class="item-title">
     					${entry.getTitle(locale)}
     				</div>
-    				<a class="item-zoom" href="${image}" data-lightbox="example-set">
+    				<a class="item-zoom" href="/documents/${groupId}/${uuid}" data-lightbox="example-set">
     					<i class="fa fa-search-plus" aria-hidden="true"></i>
     				</a>
     			</a>
