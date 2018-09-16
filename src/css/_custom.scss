@@ -9,7 +9,7 @@
 @import "slick/slick";
 @import "slick/slick-theme";
 //@import "flex";
-// @import "overrides";
+@import "overrides";
 
 @import "node_modules/font-awesome/scss/font-awesome";
 
@@ -236,22 +236,28 @@ header {
         margin: 0 20px;
         position: relative;
         flex: 1;
-        .link {
+        .block-link {
             transition: all 200ms;
             position: relative;
             display: block;
             overflow: hidden;
-            .link-image {
+
+        }    
+        .link-image {
                 display: block;
                 img {
                     width: 100%;
                 }
             }
-        }    
-        
         .link-name {
             display: inline-block;
             color: inherit;
+
+            font-size: 2rem;
+            font-weight: 500;
+            margin-top: 10px;
+            text-decoration: none !important;
+            border-bottom: 1px solid #000;
         }
         .link-description {
 
@@ -835,9 +841,8 @@ textarea.form-control {
     }
 }
 */
-@include media-query(null, $screen-sm) {
-
-    .portlet-asset-publisher .asset-actions {
+.portlet-asset-publisher{
+    .asset-actions {
         background-color: #fd0;
         border-radius: 50%;
         box-shadow: 2px 3px 5px 0 rgba(0,0,0,0.5);
@@ -847,6 +852,10 @@ textarea.form-control {
         right: 10px;
         z-index: 2;
     }
+}
+@include media-query(null, $screen-sm) {
+
+    
 
     // .slide-show {
     //     .slide{
@@ -1098,3 +1107,5 @@ textarea.form-control {
     padding: 2px 2px;
 }
 */
+
+

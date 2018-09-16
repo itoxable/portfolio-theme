@@ -3,10 +3,6 @@
     <#assign layoutLocalService = serviceLocator.findService('com.liferay.portal.kernel.service.LayoutLocalService') />
     <#assign jsonFactoryUtil = serviceLocator.findService('com.liferay.portal.kernel.json.JSONFactoryUtil') />
 
-com.liferay.portal.kernel.json
-        JSONObject jsonObject =  JSONFactoryUtil.createJSONObject();
-
-
     	<#list entries as entry>
 
             <#assign assetRenderer = entry.getAssetRenderer() />

@@ -1,6 +1,7 @@
-<div class="block-links">
+<div class="container">
+<div class="row block-links justify-content-md-center">
     <#if entries?has_content>   
-    <#assign layoutLocalService = serviceLocator.findService('com.liferay.portal.kernel.service.LayoutLocalService') />
+    	<#assign layoutLocalService = serviceLocator.findService('com.liferay.portal.kernel.service.LayoutLocalService') />
     	<#list entries as entry>
 
             <#assign assetRenderer = entry.getAssetRenderer() />
@@ -20,34 +21,36 @@
             <#assign linkDetails = link?split("@") />
 
             <#assign pageLayout = layoutLocalService.getLayout(linkDetails[2]?number, false, linkDetails[0]?number) />
-
+			
             <#if pageLayout?has_content>
-                <div class="link-wrapper">
-    				<a class="link" href="${pageLayout.getFriendlyURL()}">
-                        <div class="shadow-overlay"></div>
+				<div class="col-md-4">
+					<div class="link-wrapper">
+						<a class="block-link" href="${pageLayout.getFriendlyURL()}">
+							<div class="shadow-overlay"></div>
 
-    					<div class="lfr-meta-actions asset-actions" style="float: none">
-        			         <@getEditIcon/> 
-        			    </div>
-    
-    					<div class="link-image"  >
-    						<img src="/documents/${groupId}/${uuid}" >
-    					</div>
-    					   					
-                
-            		</a>
-                    <a href="${pageLayout.getFriendlyURL()}" class="link-name">
-						${entry.getTitle(locale)}
-					</a>
-                    <#if imageDescription?has_content>  
-                        <p class="link-description" >
-                            ${imageDescription}
-                        </p>
-            		</#if>           	
+							<div class="lfr-meta-actions asset-actions" style="float: none">
+								<@getEditIcon/> 
+							</div>
+		
+							<div class="link-image"  >
+								<img src="/documents/${groupId}/${uuid}" >
+							</div>
+							&nbsp;
+						</a>
+						<a href="${pageLayout.getFriendlyURL()}" class="link-name">
+							${entry.getTitle(locale)}
+						</a>
+						<#if imageDescription?has_content>  
+							<p class="link-description" >
+								${imageDescription}
+							</p>
+						</#if>           	
+					</div>
 				</div>
     		</#if>
     	</#list>
     </#if>
+</div>
 </div>
 <script type="text/javascript" charset="utf-8">
 </script>

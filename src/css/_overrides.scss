@@ -90,3 +90,30 @@
     }
 }
 */
+
+.portlet-column-content {
+    .empty {
+        background-color: red;
+        padding: 0;
+    }
+}
+
+// .yui3-dd-drop {
+//     .portlet-column-content {
+//         &.empty {
+//             padding: 50px;
+//         }
+//     }
+// }
+.yui3-dd-drop-active-valid {
+    .portlet-column-content {
+        border: 1px solid rgb(240, 240, 240);
+        &.empty {
+            padding: 10px;
+        }
+    }
+}
+
+.dialog-iframe-popup .lfr-form-content {
+    position: relative;
+}
